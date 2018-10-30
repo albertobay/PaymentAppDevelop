@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto">
+<item
+    android:id="@+id/miCompose"
+    android:icon="@mipmap/ico_transferencias_pressed"
+    app:showAsAction="ifRoom"
+    android:title="Compose">
+</item>
+    <item
+        android:id="@+id/miCompose2"
+        android:icon="@mipmap/ico_transferencias_pressed"
+        app:showAsAction="ifRoom"
+        android:title="Compose">
+    </item>
+    <item
+        android:id="@+id/miCompose3"
+        android:icon="@mipmap/ico_transferencias_pressed"
+        app:showAsAction="ifRoom"
+        android:title="Compose">
+    </item>
+    <item
+        android:id="@+id/miCompose4"
+        android:icon="@mipmap/ico_transferencias_pressed"
+        app:showAsAction="ifRoom"
+        android:title="Compose">
+    </item>
+
+</menu>

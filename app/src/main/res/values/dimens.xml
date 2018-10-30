@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Text Size-->
+    <dimen name="title_text">20dp</dimen>
+    <dimen name="xxs">12sp</dimen>
+    <dimen name="xs">14sp</dimen>
+    <dimen name="s">16sp</dimen>
+    <dimen name="m">18sp</dimen>
+    <dimen name="l">22sp</dimen>
+    <!-- Button Size-->
+    <dimen name="button_width">240dp</dimen>
+    <dimen name="button_height">48dp</dimen>
+    <!-- Margin Size-->
+    <dimen name="margin_small">10dp</dimen>
+    <dimen name="margin_medium">16dp</dimen>
+    <dimen name="margin_large">30dp</dimen>
+    <dimen name="margin_xtra_small">5dp</dimen>
+</resources>
