@@ -58,4 +58,21 @@
         <item name="android:textAllCaps">false</item>
     </style>
 
+    <style name="list_item_dark_medium_text_view_style">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/m</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="AppTheme.RecyclerView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:clipToPadding">false</item>
+        <item name="android:scrollbars">vertical</item>
+        <item name="android:visibility">gone</item>
+        <item name="android:columnWidth">@dimen/margin_medium</item>
+    </style>
+
+
 </resources>
