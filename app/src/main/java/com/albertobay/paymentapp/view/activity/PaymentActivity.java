@@ -4,10 +4,13 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
+import android.view.View;
 
 import com.albertobay.paymentapp.R;
 import com.albertobay.paymentapp.presenter.AmountPresenter;
@@ -24,7 +27,7 @@ import butterknife.ButterKnife;
  * Created by Albert Bay on 25/10/18.
  */
 
-public class PaymentActivity extends AppCompatActivity implements AmountPresenter.View {
+public class PaymentActivity extends AppCompatActivity implements View.OnClickListener {
 
 
     @BindView(R.id.app_bar_id)
@@ -51,48 +54,9 @@ public class PaymentActivity extends AppCompatActivity implements AmountPresente
         return true;
     }
 
-    @Override
-    public void showLoading() {
 
-    }
-
-    @Override
-    public void hideLoading() {
-
-    }
-
-    @Override
-    public void showArtistNotFoundMessage() {
-
-    }
-
-    @Override
-    public void showConnectionErrorMessage() {
-
-    }
-
-    @Override
-    public void showServerError() {
-
-    }
-
-    @Override
-    public void renderAmount() {
-
-    }
-
-    @Override
-    public void launchAmountDetail(String artist) {
-
-    }
-
-    @Override
-    public Context context() {
-        return null;
-    }
 
     private void setupToolbar() {
-
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
@@ -101,16 +65,27 @@ public class PaymentActivity extends AppCompatActivity implements AmountPresente
         LinearLayoutManager linearLayoutManager =
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         rv_amounts.setLayoutManager(linearLayoutManager);
-        AmountAdapter adapter = new AmountAdapter();
+        rv_amounts.setOnClickListener(this);
+        DividerItemDecoration itemDecor = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        rv_amounts.addItemDecoration(itemDecor);
         String[] amountVector = getResources().getStringArray(R.array.amounts);
         List<String> amountList = new ArrayList<String>(Arrays.asList(amountVector));
+        AmountAdapter adapter = new AmountAdapter(this,  amountList, new AmountAdapter.OnContinueOperationListener() {
+            @Override
+            public void onContinue(String mProductOfferItem ) {
+                Log.d("log","");//startActivityWithParams(CoverageDetailInsuranceActivity.class, null);
+            }
+        });
 
-        adapter.setAmounts(amountList);
 
-        /*adapter.setItemClickListener(
-                (tracks, track, position) -> tracksPresenter.launchArtistDetail(tracks, track, position));*/
         rv_amounts.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+
+    }
+
+    @Override
+    public void onClick(View view) {
+
 
     }
 }

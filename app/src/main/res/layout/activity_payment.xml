@@ -10,26 +10,22 @@
     <include layout="@layout/app_bar"/>
 
     <TextView
+        android:id="@+id/titleTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/api_key"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:text="@string/title_select_amount"
+        android:textSize="@dimen/l"
+        android:layout_margin="@dimen/margin_medium"/>
 
     <android.support.v7.widget.RecyclerView
-        style="@style/AppTheme.RecyclerView"
-        android:id="@+id/amountRecyclerId"/>
-
-    <Button
-        android:layout_width="wrap_content"
+        android:id="@+id/amountRecyclerId"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/api_key"
-        style="@style/button_primary_style"/>
+        android:layout_margin="@dimen/margin_small"
+        android:layout_marginTop="0dp">
+
+    </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>
