@@ -5,11 +5,9 @@ package com.albertobay.paymentapp;
  */
 
 
-import static com.albertobay.paymentapp.Constants.Params.ARTIST_ID;
-
 public class Constants {
 
-    public static final String SPOTIFY_API = "https://api.spotify.com";
+    public static final String MELI_API = "https://api.mercadopago.com";
     public static final String API_KEY = "Authorization";
 
     //This access token shouldn't be exposed, use it like a professional developer
@@ -18,14 +16,13 @@ public class Constants {
 
     public static final class Endpoint {
 
-        public static final String ARTIST_SEARCH = "/v1/search?type=artist";
-        public static final String ARTIST_TRACKS =
-                "v1/artists/{" + ARTIST_ID + "}/top-tracks?country=SE";
+        public static final String PAYMENT_METHOD_SEARCH = "/v1/payment_methods";
+
     }
 
     public static final class Params {
         public static final String QUERY_SEARCH = "q";
-        public static final String ARTIST_ID = "artistId";
+        public static final String PUBLIC_KEY = "public_key";
     }
 
     public static final class Serialized {
@@ -49,7 +46,7 @@ public class Constants {
 
     public static final class Deserializer {
 
-        public static final String ARTISTS = "artists";
+        public static final String PUBLI = "artists";
         public static final String ITEMS = "items";
         public static final String TRACKS = "tracks";
     }

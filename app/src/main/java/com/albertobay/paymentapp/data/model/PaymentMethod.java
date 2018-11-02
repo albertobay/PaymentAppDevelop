@@ -3,14 +3,12 @@ package com.albertobay.paymentapp.data.model;
 /**
  * Created by Alberto Bay on 30,October,2018
  */
-
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class PaymenthMethod {
+public class PaymentMethod {
 
     @SerializedName("id")
     @Expose

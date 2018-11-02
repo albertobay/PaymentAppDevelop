@@ -1,21 +1,17 @@
 package com.albertobay.paymentapp.view.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
-
 import com.albertobay.paymentapp.R;
-import com.albertobay.paymentapp.presenter.AmountPresenter;
 import com.albertobay.paymentapp.view.adapter.AmountAdapter;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -73,7 +69,9 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
         AmountAdapter adapter = new AmountAdapter(this,  amountList, new AmountAdapter.OnContinueOperationListener() {
             @Override
             public void onContinue(String mProductOfferItem ) {
-                Log.d("log","");//startActivityWithParams(CoverageDetailInsuranceActivity.class, null);
+                //Log.d("log","");//startActivityWithParams(CoverageDetailInsuranceActivity.class, null);
+                Intent intent = new Intent(PaymentActivity.this, CreditCardActivity.class);
+                startActivity(intent);
             }
         });
 

@@ -23,6 +23,10 @@ android {
             resValue 'string', "api_key", MeliAppID
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -38,6 +42,7 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
     implementation 'io.reactivex.rxjava2:rxjava:2.1.8'
     implementation 'io.reactivex.rxjava2:rxjava:2.1.8'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     testImplementation 'junit:junit:4.12'
