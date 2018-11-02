@@ -1,6 +1,7 @@
 package com.albertobay.paymentapp.view.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -122,7 +123,8 @@ public class CreditCardActivity extends AppCompatActivity implements CreditCardP
     }
 
     @Override public void launchSelectBankDetail( PaymentMethod payment, int position) {
-       // TODO start activty with params
+        Intent intent = new Intent(this, PaymentActivity.class);
+        startActivity(intent);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

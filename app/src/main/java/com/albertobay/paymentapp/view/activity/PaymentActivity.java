@@ -73,7 +73,7 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
         List<String> amountList = new ArrayList<String>(Arrays.asList(amountVector));
         AmountAdapter adapter = new AmountAdapter(this,  amountList, new AmountAdapter.OnContinueOperationListener() {
             @Override
-            public void onContinue(String mProductOfferItem ) {
+            public void onContinue(String amount ) {
                 //Log.d("log","");//startActivityWithParams(CoverageDetailInsuranceActivity.class, null);
                 Intent intent = new Intent(PaymentActivity.this, CreditCardActivity.class);
                 startActivity(intent);
