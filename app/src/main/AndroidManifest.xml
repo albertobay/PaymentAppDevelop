@@ -26,7 +26,8 @@
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="nosensor"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".view.activity.BankActivity"></activity>
+        <activity android:name=".view.activity.BankActivity" />
+        <activity android:name=".view.activity.InstallmentActivity"></activity>
     </application>
 
 </manifest>

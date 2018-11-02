@@ -4,7 +4,9 @@
     <string name="title_select_amount">¿Cuánto quieres pagar?</string>
     <string name="title_select_payment">Método de pago</string>
     <string name="title_select_bank">Entidad bancaria</string>
+    <string name="title_select_installment">Cantidad de cuotas</string>
     <string name="error_payment_not_found">Método de pago no encontrado, intente nuevamente</string>
     <string name="error_bank_not_found">Banco no encontrado, intente nuevamente</string>
+    <string name="error_installment_not_found">Plan no encontrado, intente nuevamente</string>
 
 </resources>

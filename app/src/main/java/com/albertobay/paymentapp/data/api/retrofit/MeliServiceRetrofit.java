@@ -2,6 +2,7 @@ package com.albertobay.paymentapp.data.api.retrofit;
 
 import com.albertobay.paymentapp.BuildConfig;
 import com.albertobay.paymentapp.Constants;
+import com.albertobay.paymentapp.data.model.Installment;
 import com.albertobay.paymentapp.data.model.Issuer;
 import com.albertobay.paymentapp.data.model.PaymentMethod;
 
@@ -22,4 +23,10 @@ public interface MeliServiceRetrofit {
     @GET(Constants.Endpoint.BANK_SEARCH) Observable<List<Issuer>> getAvailableBanks(
             @Query(Constants.Params.PUBLIC_KEY) String apiKey,
             @Query(Constants.Params.PAYMENT_METHODS) String pm);
+
+    @GET(Constants.Endpoint.INSTALLMENTS_SEARCH) Observable<List<Installment>> getInstallments(
+            @Query(Constants.Params.PUBLIC_KEY) String apiKey,
+            @Query(Constants.Params.AMOUNT) String amount,
+            @Query(Constants.Params.PAYMENT_METHODS) String pm,
+            @Query(Constants.Params.ID_ISSUER) String id);
 }

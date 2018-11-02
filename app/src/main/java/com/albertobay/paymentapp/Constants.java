@@ -18,6 +18,7 @@ public class Constants {
 
         public static final String PAYMENT_METHOD_SEARCH = "/v1/payment_methods";
         public static final String BANK_SEARCH = "/v1/payment_methods/card_issuers";
+        public static final String INSTALLMENTS_SEARCH = "/v1/payment_methods/installments";
 
     }
 
@@ -25,6 +26,8 @@ public class Constants {
         public static final String PAYMENT_METHODS = "payment_method_id";
         public static final String PUBLIC_KEY = "public_key";
         public static final String CARD_ISSUER = "card_issuer";
+        public static final String AMOUNT = "amount";
+        public static final String ID_ISSUER = "issuer.id";
     }
 
     public static final class Serialized {

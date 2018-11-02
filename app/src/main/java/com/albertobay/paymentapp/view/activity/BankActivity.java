@@ -133,7 +133,7 @@ public class BankActivity extends AppCompatActivity implements BankPresenter.Vie
 
         @Override
         public void launchSelectBankDetail(Issuer bank, int position) {
-                Intent intent = new Intent(this, PaymentActivity.class);
+                Intent intent = new Intent(this, InstallmentActivity.class);
                 startActivity(intent);
         }
 

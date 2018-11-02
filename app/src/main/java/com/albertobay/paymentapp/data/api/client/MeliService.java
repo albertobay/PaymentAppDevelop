@@ -1,5 +1,6 @@
 package com.albertobay.paymentapp.data.api.client;
 
+import com.albertobay.paymentapp.data.model.Installment;
 import com.albertobay.paymentapp.data.model.Issuer;
 import com.albertobay.paymentapp.data.model.PaymentMethod;
 
@@ -14,4 +15,6 @@ public interface MeliService {
     Observable<List<PaymentMethod>> getPaymentMethods(String publicApiKey);
 
     Observable<List<Issuer>> getAvailableBanks(String publicApiKey, String pm);
+
+    Observable<List<Installment>> getInstallments(String publicApiKey, String amount, String pm, String bank);
 }
