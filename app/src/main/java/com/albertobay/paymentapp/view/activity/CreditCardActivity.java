@@ -123,7 +123,7 @@ public class CreditCardActivity extends AppCompatActivity implements CreditCardP
     }
 
     @Override public void launchSelectBankDetail( PaymentMethod payment, int position) {
-        Intent intent = new Intent(this, PaymentActivity.class);
+        Intent intent = new Intent(this, BankActivity.class);
         startActivity(intent);
     }
     @Override

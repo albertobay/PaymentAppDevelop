@@ -25,7 +25,8 @@
             android:name=".view.activity.CreditCardActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="nosensor"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".view.activity.BankActivity"></activity>
     </application>
 
 </manifest>

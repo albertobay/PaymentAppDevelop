@@ -1,5 +1,6 @@
 package com.albertobay.paymentapp.data.api.client;
 
+import com.albertobay.paymentapp.data.model.Issuer;
 import com.albertobay.paymentapp.data.model.PaymentMethod;
 
 import java.util.List;
@@ -11,4 +12,6 @@ import io.reactivex.Observable;
  */
 public interface MeliService {
     Observable<List<PaymentMethod>> getPaymentMethods(String publicApiKey);
+
+    Observable<List<Issuer>> getAvailableBanks(String publicApiKey, String pm);
 }

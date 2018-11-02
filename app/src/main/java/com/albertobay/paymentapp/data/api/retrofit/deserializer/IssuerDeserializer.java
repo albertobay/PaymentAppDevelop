@@ -16,7 +16,7 @@ public class IssuerDeserializer <T> implements ListDeserializer<T> {
     @Override
     public List<T> deserialize(JsonElement je, Type typeOfT, JsonDeserializationContext context)
             throws JsonParseException {
-        JsonElement issuerJsonArray = je.getAsJsonObject();
-        return new Gson().fromJson(issuerJsonArray, typeOfT);
+            JsonElement paymentJsonArray = je.getAsJsonArray();
+            return new Gson().fromJson(paymentJsonArray, typeOfT);
     }
 }

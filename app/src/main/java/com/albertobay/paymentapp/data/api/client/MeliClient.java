@@ -1,6 +1,7 @@
 package com.albertobay.paymentapp.data.api.client;
 
 import com.albertobay.paymentapp.data.api.retrofit.MeliClientRetrofit;
+import com.albertobay.paymentapp.data.model.Issuer;
 import com.albertobay.paymentapp.data.model.PaymentMethod;
 
 import java.util.List;
@@ -17,6 +18,13 @@ public class MeliClient extends MeliClientRetrofit implements MeliService {
     @Override
     public Observable<List<PaymentMethod>> getPaymentMethods(String publicApiKey) {
         return getMeliService().getPaymentMethods(publicApiKey)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    @Override
+    public Observable<List<Issuer>> getAvailableBanks(String publicApiKey, String pm) {
+        return getMeliService().getAvailableBanks(publicApiKey, pm)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

@@ -17,12 +17,14 @@ public class Constants {
     public static final class Endpoint {
 
         public static final String PAYMENT_METHOD_SEARCH = "/v1/payment_methods";
+        public static final String BANK_SEARCH = "/v1/payment_methods/card_issuers";
 
     }
 
     public static final class Params {
-        public static final String QUERY_SEARCH = "q";
+        public static final String PAYMENT_METHODS = "payment_method_id";
         public static final String PUBLIC_KEY = "public_key";
+        public static final String CARD_ISSUER = "card_issuer";
     }
 
     public static final class Serialized {

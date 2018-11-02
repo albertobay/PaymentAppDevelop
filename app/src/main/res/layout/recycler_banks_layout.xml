@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background_default"
+    android:layout_margin="@dimen/margin_xtra_small"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/bankImageView"
+        android:layout_width="150dp"
+        android:layout_height="50dp"/>
+
+    <TextView
+        android:id="@+id/banksTextView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:textSize="@dimen/s"
+        android:layout_marginBottom="@dimen/margin_small"/>
+
+</LinearLayout>
