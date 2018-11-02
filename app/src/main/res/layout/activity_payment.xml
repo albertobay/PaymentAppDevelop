@@ -8,20 +8,210 @@
     android:orientation="vertical">
 
     <include layout="@layout/app_bar"/>
-
-    <TextView
-        style="@style/AppTheme.TextView.Title"
-        android:id="@+id/titleTextView"
-        android:text="@string/title_select_amount"/>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/amountRecyclerId"
+    <LinearLayout
+        android:id="@+id/mainLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:layout_margin="@dimen/margin_small"
-        android:layout_marginTop="0dp">
+        android:orientation="vertical"
+        android:visibility="visible">
 
-    </android.support.v7.widget.RecyclerView>
+        <TextView
+            style="@style/AppTheme.TextView.Title"
+            android:id="@+id/titleTextView"
+            android:text="@string/title_select_amount"/>
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/amountRecyclerId"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/margin_small"
+            android:layout_marginTop="0dp">
+
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/reviewLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/linearLayout_contracted1"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="vertical"
+                android:background="@color/succes"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    style="@style/AppTheme.TextView.Title"
+                    android:text="@string/transaction_review"/>
+            </LinearLayout>
+
+
+                <!-- Grupo Monto -->
+                <TextView
+                    android:id="@+id/txt1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_select_amount"
+                    style="@style/AppTheme.TextView"
+                    android:layout_marginBottom="@dimen/margin_xtra_small"
+                    />
+
+                <TextView
+                    android:id="@+id/montoTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/AppTheme.TextView"
+                    android:layout_marginBottom="@dimen/margin_xtra_small"/>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:id="@+id/img1"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="4dp"
+                    android:tint="@color/black"
+                    android:background="@color/greyLine"
+                    />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <!-- Grupo Metodo -->
+
+                <LinearLayout
+                    android:id="@+id/tarjetaTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/background_default"
+                    android:layout_margin="@dimen/margin_xtra_small"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        android:id="@+id/txt2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/title_select_payment"
+                        style="@style/AppTheme.TextView"
+                        android:layout_marginBottom="@dimen/margin_xtra_small"
+                        />
+
+                    <ImageView
+                        android:id="@+id/paymentImageView"
+                        android:layout_width="150dp"
+                        android:layout_height="50dp"/>
+
+                    <TextView
+                        android:id="@+id/paymentTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/s"
+                        android:layout_marginBottom="@dimen/margin_small"/>
+
+                </LinearLayout>
+
+                <!-- Grupo Banco -->
+
+
+                <LinearLayout
+                    android:id="@+id/bancoTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_toRightOf="@id/tarjetaTextView"
+                    android:layout_below="@+id/txt3"
+                    android:background="@color/background_default"
+                    android:layout_margin="@dimen/margin_xtra_small"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        android:id="@+id/txt3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@+id/bancoTextView"
+                        android:layout_below="@+id/img1"
+                        android:layout_toRightOf="@id/txt2"
+                        android:text="@string/title_select_bank"
+                        style="@style/AppTheme.TextView"
+                        />
+
+                    <ImageView
+                        android:id="@+id/bancoImageView"
+                        android:layout_width="150dp"
+                        android:layout_height="50dp"/>
+
+                    <TextView
+                        android:id="@+id/bancoNombreTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/s"
+                        android:layout_marginBottom="@dimen/margin_small"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:id="@+id/img3"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="4dp"
+                    android:tint="@color/gray"
+                    android:background="@color/greyLine"
+                    />
+
+
+                <!-- Grupo Cuotas -->
+                <TextView
+                    android:id="@+id/cuotaTexto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_select_installment"
+                    style="@style/AppTheme.TextView"
+                    />
+
+                <TextView
+                    android:id="@+id/recomendedMessageTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/AppTheme.TextView"
+                    android:layout_alignParentLeft="true"
+                    android:layout_margin="@dimen/margin_xtra_small"/>
+
+                <ImageView
+                    android:id="@+id/img4"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="4dp"
+                    android:tint="@color/gray"
+                    android:background="@color/greyLine" />
+
+
+                <Button
+                    android:id="@+id/closeButton"
+                    android:layout_width="240dp"
+                    android:layout_height="48dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="34dp"
+                    android:layout_below="@id/img4"
+                    android:text="@string/button_confirm"
+                    style="@style/button_primary_style" />
+        </LinearLayout>
 </LinearLayout>

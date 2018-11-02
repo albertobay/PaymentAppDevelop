@@ -2,6 +2,7 @@ package com.albertobay.paymentapp.view.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +19,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.albertobay.paymentapp.BuildConfig;
+import com.albertobay.paymentapp.Constants;
 import com.albertobay.paymentapp.R;
 import com.albertobay.paymentapp.data.api.client.MeliClient;
 import com.albertobay.paymentapp.data.model.Issuer;
@@ -45,6 +47,8 @@ public class BankActivity extends AppCompatActivity implements BankPresenter.Vie
         @BindView(R.id.iv_error)
         ImageView iv_error;
         private BankPresenter bankPresenter;
+        SharedPreferences mSharedPreferences;
+        SharedPreferences.Editor session;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -52,13 +56,15 @@ public class BankActivity extends AppCompatActivity implements BankPresenter.Vie
                 setContentView(R.layout.activity_bank);
 
                 ButterKnife.bind(this);
+                setupSharedPreferences();
                 setupToolbar();
                 setupRecyclerView();
 
                 bankPresenter = new BankPresenter(new BankInteractor(new MeliClient()));
                 bankPresenter.setView(this);
 
-                bankPresenter.onSearchBanks(BuildConfig.ApiKey, "visa");
+                bankPresenter.onSearchBanks(BuildConfig.ApiKey,
+                        mSharedPreferences.getString(Constants.SharedPreferences.CREDIT_CARD_ID_SELECTED,null));
         }
 
         @Override
@@ -99,6 +105,12 @@ public class BankActivity extends AppCompatActivity implements BankPresenter.Vie
                 return super.onOptionsItemSelected(item);
         }
 
+        private void setupSharedPreferences(){
+                mSharedPreferences = getSharedPreferences(Constants.SharedPreferences.STORE_NAME, Context.MODE_PRIVATE);
+                session = mSharedPreferences.edit();
+
+        }
+
         private void setupRecyclerView() {
         /*int numberOfColumns = 1;
         rv_cards.setLayoutManager(new GridLayoutManager(this, numberOfColumns));*/
@@ -133,6 +145,10 @@ public class BankActivity extends AppCompatActivity implements BankPresenter.Vie
 
         @Override
         public void launchSelectBankDetail(Issuer bank, int position) {
+                session.putString(Constants.SharedPreferences.BANK_SELECTED, bank.getName());
+                session.putString(Constants.SharedPreferences.BANK_SELECTED, bank.getName());
+                session.putString(Constants.SharedPreferences.URL_IMAGE_BANK_SELECTED, bank.getSecureThumbnail());
+                session.commit();
                 Intent intent = new Intent(this, InstallmentActivity.class);
                 startActivity(intent);
         }

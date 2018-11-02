@@ -8,5 +8,9 @@
     <string name="error_payment_not_found">Método de pago no encontrado, intente nuevamente</string>
     <string name="error_bank_not_found">Banco no encontrado, intente nuevamente</string>
     <string name="error_installment_not_found">Plan no encontrado, intente nuevamente</string>
+    <string name="transaction_review">Resumen de su pago</string>
+    <string name="button_confirm">Confirmar</string>
+
+
 
 </resources>

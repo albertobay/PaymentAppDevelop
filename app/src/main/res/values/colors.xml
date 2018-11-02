@@ -5,8 +5,11 @@
     <color name="colorAccent">#00B2EB</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    <color name="gray">#FF939598</color>
     <color name="button">#00B2EB</color>
     <color name="button_pressed">#0277BD</color>
+    <color name="succes">#5af4a5</color>
     <color name="button_disabled">#CCCCCC</color>
     <color name="background_default">@color/white</color>
+    <color name="greyLine">#e4e4e4</color>
 </resources>

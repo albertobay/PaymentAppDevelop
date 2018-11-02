@@ -8,11 +8,6 @@ package com.albertobay.paymentapp;
 public class Constants {
 
     public static final String MELI_API = "https://api.mercadopago.com";
-    public static final String API_KEY = "Authorization";
-
-    //This access token shouldn't be exposed, use it like a professional developer
-    public static final String ACCESS_TOKEN = "Bearer BQA7baqjgds6Z2vn_nWe4E8FCMqzsturlVeauK4az0"
-            + "l-AK8t0BZUc5hyGJ-p7R-FJxPmXv8_8m1wPYkyKSB7eL6Wjtn2xe9eQmtDS83GtOADrrXaJ0Z-jZ1vugpSsz42v11lz1NZ1HxT0B2B";
 
     public static final class Endpoint {
 
@@ -30,30 +25,28 @@ public class Constants {
         public static final String ID_ISSUER = "issuer.id";
     }
 
-    public static final class Serialized {
+    public static final class SharedPreferences {
 
-        public static final String NAME = "name";
-        public static final String IMAGES = "images";
-        public static final String FOLLOWERS = "followers";
-        public static final String HREF = "href";
-        public static final String ID = "id";
-        public static final String POPULARITY = "popularity";
-        public static final String HEIGHT = "height";
-        public static final String URL = "url";
-        public static final String WIDTH = "width";
-        public static final String TOTAL = "total";
-        public static final String PREVIEW_URL = "preview_url";
-        public static final String TRACK_NUMBER = "track_number";
-        public static final String ALBUM = "album";
+        public static final String STORE_NAME = "com.albertobay.paymentapp.storage";
 
+        public static final String COMPLETE_FLOW = "com.albertobay.paymentapp.storage.completeFlow";
 
-    }
+        public static final String AMOUNT_SELECTED = "com.albertobay.paymentapp.storage.amountSelected";
 
-    public static final class Deserializer {
+        public static final String CREDIT_CARD_SELECTED = "com.albertobay.paymentapp.storage.creditcardSelected";
 
-        public static final String PUBLI = "artists";
-        public static final String ITEMS = "items";
-        public static final String TRACKS = "tracks";
+        public static final String CREDIT_CARD_ID_SELECTED = "com.albertobay.paymentapp.storage.creditcardIdSelected";
+
+        public static final String URL_IMAGE_CD_SELECTED = "com.albertobay.paymentapp.storage.urlSelected";
+
+        public static final String BANK_ID_SELECTED = "com.albertobay.paymentapp.storage.bankIdSelected";
+
+        public static final String BANK_SELECTED = "com.albertobay.paymentapp.storage.bankSelected";
+
+        public static final String URL_IMAGE_BANK_SELECTED = "com.albertobay.paymentapp.storage.urlBankSelected";
+
+        public static final String RECOMENDED_MESSAGE = "com.albertobay.paymentapp.storage.recomendedMessage";
+
     }
 }
 

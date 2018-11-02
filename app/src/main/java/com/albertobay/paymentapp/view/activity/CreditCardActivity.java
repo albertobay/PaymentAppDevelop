@@ -2,6 +2,7 @@ package com.albertobay.paymentapp.view.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -19,16 +20,13 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.albertobay.paymentapp.BuildConfig;
+import com.albertobay.paymentapp.Constants;
 import com.albertobay.paymentapp.data.api.client.MeliClient;
 import com.albertobay.paymentapp.data.model.PaymentMethod;
 import com.albertobay.paymentapp.interactor.CreditCardInteractor;
 import com.albertobay.paymentapp.presenter.CreditCardPresenter;
 import com.albertobay.paymentapp.view.adapter.CreditCardAdapter;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.albertobay.paymentapp.R;
-
-import java.lang.reflect.Type;
 import java.util.List;
 
 import butterknife.BindView;
@@ -43,12 +41,15 @@ public class CreditCardActivity extends AppCompatActivity implements CreditCardP
     @BindView(R.id.pv_meli) ProgressBar pv_meli;
     @BindView(R.id.iv_error) ImageView iv_error;
     private CreditCardPresenter cardPresenter;
+    SharedPreferences mSharedPreferences;
+    SharedPreferences.Editor session;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_credit_card);
 
         ButterKnife.bind(this);
+        setupSharedPreferences();
         setupToolbar();
         setupRecyclerView();
 
@@ -91,6 +92,13 @@ public class CreditCardActivity extends AppCompatActivity implements CreditCardP
         return super.onOptionsItemSelected(item);
     }
 
+    private void setupSharedPreferences(){
+        mSharedPreferences = getSharedPreferences(Constants.SharedPreferences.STORE_NAME, Context.MODE_PRIVATE);
+        session = mSharedPreferences.edit();
+
+    }
+
+
     private void setupRecyclerView() {
         /*int numberOfColumns = 1;
         rv_cards.setLayoutManager(new GridLayoutManager(this, numberOfColumns));*/
@@ -101,6 +109,7 @@ public class CreditCardActivity extends AppCompatActivity implements CreditCardP
         rv_cards.addItemDecoration(itemDecor);
         CreditCardAdapter adapter = new CreditCardAdapter();
         adapter.setItemClickListener(
+
                 (payments, payment, position) -> cardPresenter.launchBankDetail(payment, position));
         rv_cards.setAdapter(adapter);
 
@@ -123,6 +132,10 @@ public class CreditCardActivity extends AppCompatActivity implements CreditCardP
     }
 
     @Override public void launchSelectBankDetail( PaymentMethod payment, int position) {
+        session.putString(Constants.SharedPreferences.CREDIT_CARD_SELECTED, payment.getName());
+        session.putString(Constants.SharedPreferences.CREDIT_CARD_ID_SELECTED, payment.getId());
+        session.putString(Constants.SharedPreferences.URL_IMAGE_CD_SELECTED, payment.getSecureThumbnail());
+        session.commit();
         Intent intent = new Intent(this, BankActivity.class);
         startActivity(intent);
     }
