@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Text Size-->
-    <dimen name="title_text">20dp</dimen>
+    <dimen name="title_text">18dp</dimen>
     <dimen name="xxxs">10sp</dimen>
     <dimen name="xxs">12sp</dimen>
     <dimen name="xs">14sp</dimen>

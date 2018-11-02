@@ -2,6 +2,7 @@
     <string name="app_name">PaymentApp</string>
     <string name="title_main_page">Payment App</string>
     <string name="title_select_amount">¿Cuánto quieres pagar?</string>
+    <string name="title_select_payment">Método de pago</string>
     <string name="error_payment_not_found">Método de pago no encontrado, intente nuevamente</string>
 
 </resources>

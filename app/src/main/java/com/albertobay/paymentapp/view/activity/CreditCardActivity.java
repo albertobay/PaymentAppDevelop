@@ -10,6 +10,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -35,7 +36,7 @@ import butterknife.ButterKnife;
 public class CreditCardActivity extends AppCompatActivity implements CreditCardPresenter.View {
 
     @BindView(R.id.app_bar_id) Toolbar toolbar;
-    @BindView(R.id.titleTextView) TextView titleTextView;
+    @BindView(R.id.sdkTitle) TextView sdkTitle;
     @BindView(R.id.errorTextView) TextView errorTextView;
     @BindView(R.id.cardRecyclerId) RecyclerView rv_cards;
     @BindView(R.id.pv_meli) ProgressBar pv_meli;
@@ -53,14 +54,11 @@ public class CreditCardActivity extends AppCompatActivity implements CreditCardP
         cardPresenter = new CreditCardPresenter(new CreditCardInteractor(new MeliClient()));
         cardPresenter.setView(this);
 
-        ;
-
         cardPresenter.onSearchPayments(BuildConfig.ApiKey);
     }
 
     @Override public void showLoading() {
         pv_meli.setVisibility(View.VISIBLE);
-        titleTextView.setVisibility(View.GONE);
         rv_cards.setVisibility(View.GONE);
     }
 
@@ -108,12 +106,13 @@ public class CreditCardActivity extends AppCompatActivity implements CreditCardP
     }
 
     private void setupToolbar() {
+        sdkTitle.setText(getString(R.string.title_select_payment));
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayUseLogoEnabled(false);
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setDisplayShowTitleEnabled(false);
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
         }
     }
 
@@ -124,5 +123,10 @@ public class CreditCardActivity extends AppCompatActivity implements CreditCardP
 
     @Override public void launchSelectBankDetail( PaymentMethod payment, int position) {
        // TODO start activty with params
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
     }
 }

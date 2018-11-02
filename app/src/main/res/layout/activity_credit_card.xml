@@ -9,16 +9,6 @@
 
     <include layout="@layout/app_bar"/>
 
-    <TextView
-        android:id="@+id/titleTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textAlignment="center"
-        android:text="@string/title_select_amount"
-        android:textSize="@dimen/l"
-        android:layout_margin="@dimen/margin_medium"/>
-
     <ImageView
         android:id="@+id/iv_error"
         style="@style/AppTheme.ImageView"

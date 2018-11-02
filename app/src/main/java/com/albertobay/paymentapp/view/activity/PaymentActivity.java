@@ -3,6 +3,7 @@ package com.albertobay.paymentapp.view.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,6 +11,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
+import android.widget.TextView;
+
 import com.albertobay.paymentapp.R;
 import com.albertobay.paymentapp.view.adapter.AmountAdapter;
 import java.util.ArrayList;
@@ -30,6 +33,8 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
     Toolbar toolbar;
     @BindView(R.id.amountRecyclerId)
     RecyclerView rv_amounts;
+    @BindView(R.id.sdkTitle)
+    TextView sdkTitle;
 
 
     @Override
@@ -51,12 +56,12 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
     }
 
 
-
     private void setupToolbar() {
+        sdkTitle.setText(getString(R.string.title_main_page));
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-
     }
+
     private void setupRecyclerView() {
         LinearLayoutManager linearLayoutManager =
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
