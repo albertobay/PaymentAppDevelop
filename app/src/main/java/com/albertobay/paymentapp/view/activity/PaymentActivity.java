@@ -161,7 +161,7 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
                 .load(paymentUrl)
                 .into(paymentImageView);
 
-        montoTextView.setText(amount);
+        montoTextView.setText(Constants.CURRENCY+amount);
         paymentTextView.setText(payment);
         bancoNombreTextView.setText(bank);
         recomendedMessageTextView.setText(installment);

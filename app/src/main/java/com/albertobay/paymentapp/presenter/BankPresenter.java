@@ -29,7 +29,7 @@ public class BankPresenter extends Presenter<BankPresenter.View> {
                 getView().hideLoading();
                 getView().renderBanks(banks);
             } else {
-                getView().showPaymentsNotFoundMessage();
+                getView().showBanksNotFoundMessage();
             }
         }, Throwable::printStackTrace);
     }
@@ -45,7 +45,7 @@ public class BankPresenter extends Presenter<BankPresenter.View> {
 
         void hideLoading();
 
-        void showPaymentsNotFoundMessage();
+        void showBanksNotFoundMessage();
 
         void renderBanks(List<Issuer> banks);
 

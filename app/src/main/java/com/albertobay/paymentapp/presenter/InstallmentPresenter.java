@@ -30,7 +30,7 @@ public class InstallmentPresenter extends Presenter<InstallmentPresenter.View> {
                 getView().hideLoading();
                 getView().renderInstallments(installments);
             } else {
-                getView().showPaymentsNotFoundMessage();
+                getView().showInstallmentsNotFoundMessage();
             }
         }, Throwable::printStackTrace);
     }
@@ -46,7 +46,7 @@ public class InstallmentPresenter extends Presenter<InstallmentPresenter.View> {
 
         void hideLoading();
 
-        void showPaymentsNotFoundMessage();
+        void showInstallmentsNotFoundMessage();
 
         void renderInstallments(List<Installment> installments);
 

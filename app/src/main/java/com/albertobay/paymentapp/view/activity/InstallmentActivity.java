@@ -83,7 +83,7 @@ public void hideLoading() {
         }
 
 @Override
-public void showPaymentsNotFoundMessage() {
+public void showInstallmentsNotFoundMessage() {
         pv_meli.setVisibility(View.GONE);
         iv_error.setVisibility(View.VISIBLE);
         errorTextView.setVisibility(View.VISIBLE);

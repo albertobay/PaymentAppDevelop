@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import com.albertobay.paymentapp.Constants;
 import com.albertobay.paymentapp.R;
 
 import butterknife.BindView;
@@ -80,7 +82,7 @@ public class AmountAdapter extends RecyclerView.Adapter<AmountAdapter.AmountView
             if(amounts != null && amounts.size()>0){
 
             }
-            amountTextView.setText(mItem);
+            amountTextView.setText(Constants.CURRENCY +mItem);
             mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {mContinueOperationListener.onContinue(mItem);}

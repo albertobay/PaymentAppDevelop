@@ -80,11 +80,11 @@ public class BankActivity extends AppCompatActivity implements BankPresenter.Vie
         }
 
         @Override
-        public void showPaymentsNotFoundMessage() {
+        public void showBanksNotFoundMessage() {
                 pv_meli.setVisibility(View.GONE);
                 iv_error.setVisibility(View.VISIBLE);
                 errorTextView.setVisibility(View.VISIBLE);
-                errorTextView.setText(getString(R.string.error_payment_not_found));
+                errorTextView.setText(getString(R.string.error_bank_not_found));
                 iv_error.setImageDrawable(ContextCompat.getDrawable(context(), R.mipmap.ic_not_internet));
         }
 

@@ -9,6 +9,8 @@ public class Constants {
 
     public static final String MELI_API = "https://api.mercadopago.com";
 
+    public static final String CURRENCY = "$";
+
     public static final class Endpoint {
 
         public static final String PAYMENT_METHOD_SEARCH = "/v1/payment_methods";
