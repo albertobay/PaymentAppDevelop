@@ -18,6 +18,9 @@ public class InstallmentInteractor {
         this.meliService = meliService;
     }
 
+    /**
+     * Se instancia el observable que espera la respuesta de la llamada a la API
+     */
     public Observable<List<Installment>> getInstallments(String publicApiKey, String amount, String pm, String bank) {
         return meliService.getInstallments(publicApiKey, amount, pm, bank);
     }

@@ -64,6 +64,9 @@ public interface ItemClickListener {
     void onItemClick(List<PaymentMethod> paymentMethods, PaymentMethod payment, int position);
 }
 
+    /**
+     * Se crea el vieholder
+     */
 public static class CardsViewHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.paymentImageView)

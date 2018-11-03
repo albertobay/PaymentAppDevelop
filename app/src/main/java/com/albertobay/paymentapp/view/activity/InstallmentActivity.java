@@ -34,7 +34,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class InstallmentActivity extends AppCompatActivity implements InstallmentPresenter.View {
-
+    /**
+     * Se obtienen los elementos del layout
+     */
     @BindView(R.id.app_bar_id)
     Toolbar toolbar;
     @BindView(R.id.sdkTitle)
@@ -47,7 +49,13 @@ public class InstallmentActivity extends AppCompatActivity implements Installmen
     ProgressBar pv_meli;
     @BindView(R.id.iv_error)
     ImageView iv_error;
+    /**
+     * Se instancia el Presenter para la obtención de los datos
+     */
     private InstallmentPresenter mInstallmentPresenter;
+    /**
+     * preferencias de la app
+     */
     SharedPreferences mSharedPreferences;
     SharedPreferences.Editor session;
 
@@ -69,48 +77,59 @@ public class InstallmentActivity extends AppCompatActivity implements Installmen
                 mSharedPreferences.getString(Constants.SharedPreferences.CREDIT_CARD_ID_SELECTED,null),
                 mSharedPreferences.getString(Constants.SharedPreferences.BANK_ID_SELECTED,null));
             }
+    /**
+     * muestra el progress bar
+     */
+    @Override
+    public void showLoading() {
+            pv_meli.setVisibility(View.VISIBLE);
+            rv_install.setVisibility(View.GONE);
+        }
 
-@Override
-public void showLoading() {
-        pv_meli.setVisibility(View.VISIBLE);
-        rv_install.setVisibility(View.GONE);
+    /**
+     * oculta el progress bar
+     */
+    @Override
+    public void hideLoading() {
+            pv_meli.setVisibility(View.GONE);
+        rv_install.setVisibility(View.VISIBLE);
+            }
+
+    /**
+     * muestra icono y mensaje de error
+     */
+    @Override
+    public void showInstallmentsNotFoundMessage() {
+            pv_meli.setVisibility(View.GONE);
+            iv_error.setVisibility(View.VISIBLE);
+            errorTextView.setVisibility(View.VISIBLE);
+            errorTextView.setText(getString(R.string.error_installment_not_found));
+            iv_error.setImageDrawable(ContextCompat.getDrawable(context(), R.mipmap.ic_not_internet));
+            }
+
+    /**
+     * setea las cuotas de pago obtenidos en la API al adapter
+     */
+    @Override
+    public void renderInstallments(List<Installment> installments) {
+            InstallmentAdapter adapter = (InstallmentAdapter) rv_install.getAdapter();
+            adapter.setInstallment(installments.get(0).getPayerCosts());
+            adapter.notifyDataSetChanged();
+    }
+    /**
+     * función que es llamada al seleccionar una opción en el recyclerview
+     */
+    @Override
+    public void launchSelectedInstallmentDetail(PayerCost payerCost, int position) {
+        session.putString(Constants.SharedPreferences.RECOMENDED_MESSAGE, payerCost.getRecommendedMessage());
+        session.putBoolean(Constants.SharedPreferences.COMPLETE_FLOW, true);
+        session.commit();
+        Intent intent = new Intent(InstallmentActivity.this, PaymentActivity.class);
+        startActivity(intent);
+
     }
 
-@Override
-public void hideLoading() {
-        pv_meli.setVisibility(View.GONE);
-    rv_install.setVisibility(View.VISIBLE);
-        }
-
-@Override
-public void showInstallmentsNotFoundMessage() {
-        pv_meli.setVisibility(View.GONE);
-        iv_error.setVisibility(View.VISIBLE);
-        errorTextView.setVisibility(View.VISIBLE);
-        errorTextView.setText(getString(R.string.error_installment_not_found));
-        iv_error.setImageDrawable(ContextCompat.getDrawable(context(), R.mipmap.ic_not_internet));
-        }
-
-
-@Override
-public void renderInstallments(List<Installment> installments) {
-        InstallmentAdapter adapter = (InstallmentAdapter) rv_install.getAdapter();
-        adapter.setInstallment(installments.get(0).getPayerCosts());
-        adapter.notifyDataSetChanged();
-        }
-
-@Override
-public void launchSelectedInstallmentDetail(PayerCost payerCost, int position) {
-        //TODO a la primer apantalla
-    session.putString(Constants.SharedPreferences.RECOMENDED_MESSAGE, payerCost.getRecommendedMessage());
-    session.putBoolean(Constants.SharedPreferences.COMPLETE_FLOW, true);
-    session.commit();
-    Intent intent = new Intent(InstallmentActivity.this, PaymentActivity.class);
-    startActivity(intent);
-
-}
-
-        @Override
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
         onBackPressed();
@@ -119,15 +138,19 @@ public void launchSelectedInstallmentDetail(PayerCost payerCost, int position) {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Se configura las preferencias
+     */
     private void setupSharedPreferences(){
         mSharedPreferences = getSharedPreferences(Constants.SharedPreferences.STORE_NAME, Context.MODE_PRIVATE);
         session = mSharedPreferences.edit();
 
     }
 
-private void setupRecyclerView() {
-        /*int numberOfColumns = 1;
-        rv_cards.setLayoutManager(new GridLayoutManager(this, numberOfColumns));*/
+    /**
+     * Se configura el recyclerview
+     */
+    private void setupRecyclerView() {
         LinearLayoutManager linearLayoutManager =
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         rv_install.setLayoutManager(linearLayoutManager);
@@ -137,10 +160,12 @@ private void setupRecyclerView() {
         adapter.setItemClickListener(
                 (payer, position) -> mInstallmentPresenter.launchInstallment(payer, position));
         rv_install.setAdapter(adapter);
+    }
 
-}
-
-private void setupToolbar() {
+    /**
+     * Se configura el toolbar
+     */
+    private void setupToolbar() {
         sdkTitle.setText(getString(R.string.title_select_installment));
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -149,19 +174,11 @@ private void setupToolbar() {
                 actionBar.setDisplayHomeAsUpEnabled(true);
                 getSupportActionBar().setDisplayShowTitleEnabled(false);
         }
-}
+    }
 
+    @Override
+    public Context context() {
+            return InstallmentActivity.this;
+            }
 
-@Override
-public Context context() {
-        return InstallmentActivity.this;
-        }
-
-
-
-@Override
-public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-        }
 }

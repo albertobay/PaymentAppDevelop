@@ -11,7 +11,6 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -34,6 +33,9 @@ import butterknife.ButterKnife;
 
 public class BankActivity extends AppCompatActivity implements BankPresenter.View {
 
+        /**
+         * Se obtienen los elementos del layout
+         */
         @BindView(R.id.app_bar_id)
         Toolbar toolbar;
         @BindView(R.id.sdkTitle)
@@ -46,7 +48,13 @@ public class BankActivity extends AppCompatActivity implements BankPresenter.Vie
         ProgressBar pv_meli;
         @BindView(R.id.iv_error)
         ImageView iv_error;
+        /**
+         * Se instancia el Presenter para la obtención de los datos
+         */
         private BankPresenter bankPresenter;
+        /**
+         * preferencias de la app
+         */
         SharedPreferences mSharedPreferences;
         SharedPreferences.Editor session;
 
@@ -66,19 +74,27 @@ public class BankActivity extends AppCompatActivity implements BankPresenter.Vie
                 bankPresenter.onSearchBanks(BuildConfig.ApiKey,
                         mSharedPreferences.getString(Constants.SharedPreferences.CREDIT_CARD_ID_SELECTED,null));
         }
-
+        /**
+         * muestra el progress bar
+         */
         @Override
         public void showLoading() {
                 pv_meli.setVisibility(View.VISIBLE);
                 rv_banks.setVisibility(View.GONE);
         }
 
+        /**
+         * oculta el progress bar
+         */
         @Override
         public void hideLoading() {
                 pv_meli.setVisibility(View.GONE);
                 rv_banks.setVisibility(View.VISIBLE);
         }
 
+        /**
+         * muestra icono y mensaje de error
+         */
         @Override
         public void showBanksNotFoundMessage() {
                 pv_meli.setVisibility(View.GONE);
@@ -88,7 +104,9 @@ public class BankActivity extends AppCompatActivity implements BankPresenter.Vie
                 iv_error.setImageDrawable(ContextCompat.getDrawable(context(), R.mipmap.ic_not_internet));
         }
 
-
+        /**
+         * setea las entidades bancarias obtenidos en la API al adapter
+         */
         @Override
         public void renderBanks(List<Issuer> banks) {
                 BankAdapter adapter = (BankAdapter) rv_banks.getAdapter();
@@ -105,15 +123,19 @@ public class BankActivity extends AppCompatActivity implements BankPresenter.Vie
                 return super.onOptionsItemSelected(item);
         }
 
+        /**
+         * Se configura las preferencias
+         */
         private void setupSharedPreferences(){
                 mSharedPreferences = getSharedPreferences(Constants.SharedPreferences.STORE_NAME, Context.MODE_PRIVATE);
                 session = mSharedPreferences.edit();
 
         }
 
+        /**
+         * Se configura el RecyclerView
+         */
         private void setupRecyclerView() {
-        /*int numberOfColumns = 1;
-        rv_cards.setLayoutManager(new GridLayoutManager(this, numberOfColumns));*/
                 LinearLayoutManager linearLayoutManager =
                         new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
                 rv_banks.setLayoutManager(linearLayoutManager);
@@ -126,6 +148,9 @@ public class BankActivity extends AppCompatActivity implements BankPresenter.Vie
 
         }
 
+        /**
+         * Se configura el toolbar
+         */
         private void setupToolbar() {
                 sdkTitle.setText(getString(R.string.title_select_bank));
                 setSupportActionBar(toolbar);
@@ -143,6 +168,9 @@ public class BankActivity extends AppCompatActivity implements BankPresenter.Vie
                 return BankActivity.this;
         }
 
+        /**
+         * función que es llamada al seleccionar una opción en el recyclerview
+         */
         @Override
         public void launchSelectBankDetail(Issuer bank, int position) {
                 session.putString(Constants.SharedPreferences.BANK_SELECTED, bank.getName());
@@ -151,11 +179,5 @@ public class BankActivity extends AppCompatActivity implements BankPresenter.Vie
                 session.commit();
                 Intent intent = new Intent(this, InstallmentActivity.class);
                 startActivity(intent);
-        }
-
-        @Override
-        public boolean onCreateOptionsMenu(Menu menu) {
-                getMenuInflater().inflate(R.menu.menu_main, menu);
-                return true;
         }
 }

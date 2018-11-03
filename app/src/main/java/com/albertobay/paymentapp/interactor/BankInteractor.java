@@ -16,7 +16,9 @@ public class BankInteractor {
     public BankInteractor(MeliService meliService) {
         this.meliService = meliService;
     }
-
+    /**
+     * Se instancia el observable que espera la respuesta de la llamada a la API
+     */
     public Observable<List<Issuer>> getAvailableBanks(String publicApiKey, String pm) {
         return meliService.getAvailableBanks(publicApiKey, pm);
     }

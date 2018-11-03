@@ -68,6 +68,9 @@ public class InstallmentAdapter extends  RecyclerView.Adapter<InstallmentAdapter
         void onItemClick(PayerCost payer, int position);
     }
 
+    /**
+     * Se crea el vieholder
+     */
     public static class InstallmentViewHolder extends RecyclerView.ViewHolder {
 
 

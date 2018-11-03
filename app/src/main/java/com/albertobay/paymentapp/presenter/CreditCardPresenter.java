@@ -21,7 +21,9 @@ public class CreditCardPresenter extends Presenter<CreditCardPresenter.View> {
         super.terminate();
         setView(null);
     }
-
+    /**
+     * Se llama al interactor para recuperar la data desde la API
+     */
     public void onSearchPayments(String string) {
         getView().showLoading();
         interactor.loadPaymentMethods(string).subscribe(payments -> {

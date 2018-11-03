@@ -18,6 +18,9 @@ public class CreditCardInteractor {
         this.meliService = meliService;
     }
 
+    /**
+     * Se instancia el observable que espera la respuesta de la llamada a la API
+     */
     public Observable<List<PaymentMethod>> loadPaymentMethods(String publicApiKey) {
         return meliService.getPaymentMethods(publicApiKey);
     }

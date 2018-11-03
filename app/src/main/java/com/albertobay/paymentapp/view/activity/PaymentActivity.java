@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,7 +14,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.albertobay.paymentapp.Constants;
@@ -36,7 +34,9 @@ import butterknife.ButterKnife;
 
 public class PaymentActivity extends AppCompatActivity implements View.OnClickListener {
 
-
+    /**
+     * Se obtienen los elementos del layout
+     */
     @BindView(R.id.app_bar_id)
     Toolbar toolbar;
     @BindView(R.id.amountRecyclerId)
@@ -61,11 +61,9 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
     ImageView bancoImageView;
     @BindView(R.id.closeButton)
     Button closeButton;
-
-
-
-
-
+    /**
+     * preferencias de la app
+     */
     SharedPreferences mSharedPreferences;
     SharedPreferences.Editor session;
 
@@ -79,15 +77,15 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
 
     }
 
-    // Menu icons are inflated just as they were with actionbar
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+    protected void onDestroy() {
+        super.onDestroy();
+        cleanAndRestart();
     }
 
-
+    /**
+     * Se valida si el usuario completó el ciclo de pago para determinar cual layout mostrar
+     */
     private void validateSharedPreferences(){
         mSharedPreferences = getSharedPreferences(Constants.SharedPreferences.STORE_NAME, Context.MODE_PRIVATE);
         session = mSharedPreferences.edit();
@@ -99,12 +97,18 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
+    /**
+     * Se configura el Toolbar
+     */
     private void setupToolbar() {
         sdkTitle.setText(getString(R.string.title_main_page));
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
+    /**
+     * Se configura el RecyclerView
+     */
     private void setupRecyclerView() {
         LinearLayoutManager linearLayoutManager =
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
@@ -124,23 +128,35 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
             }
         });
 
-
         rv_amounts.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
     }
 
+    /**
+     * Detectando el click en el botón closeButton
+     */
     @Override
     public void onClick(View view) {
         if(view.equals(closeButton)){
-            session.putBoolean(Constants.SharedPreferences.COMPLETE_FLOW, false);
-            session.commit();
-            session.clear();
-            finish();
-            startActivity(getIntent());
+            cleanAndRestart();
         }
     }
 
+    /**
+     * Reset de las preferencias y relanzamiento de la app
+     */
+    public void cleanAndRestart(){
+        session.putBoolean(Constants.SharedPreferences.COMPLETE_FLOW, false);
+        session.commit();
+        session.clear();
+        finish();
+        startActivity(getIntent());
+    }
+
+    /**
+     * Se configura la pantalla final con los datos seleccionados por el usuario
+     */
     private void setupFinalScreen() {
         mainLayout.setVisibility(View.GONE);
         reviewLayout.setVisibility(View.VISIBLE);

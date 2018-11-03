@@ -23,6 +23,9 @@ public class InstallmentPresenter extends Presenter<InstallmentPresenter.View> {
         setView(null);
     }
 
+    /**
+     * Se llama al interactor para recuperar la data desde la API
+     */
     public void onSearchInstallments(String publicApiKey, String amount, String pm, String bank) {
         getView().showLoading();
         interactor.getInstallments(publicApiKey, amount, pm, bank).subscribe(installments -> {

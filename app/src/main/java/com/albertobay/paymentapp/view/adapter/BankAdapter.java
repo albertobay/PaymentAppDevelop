@@ -70,6 +70,9 @@ public class BankAdapter extends RecyclerView.Adapter<BankAdapter.BanksViewHolde
         void onItemClick(List<Issuer> banks, Issuer bank, int position);
     }
 
+    /**
+     * Se crea el vieholder
+     */
     public static class BanksViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.bankImageView)

@@ -22,6 +22,9 @@ public class BankPresenter extends Presenter<BankPresenter.View> {
         setView(null);
     }
 
+    /**
+     * Se llama al interactor para recuperar la data desde la API
+     */
     public void onSearchBanks(String apiKey, String pm) {
         getView().showLoading();
         interactor.getAvailableBanks(apiKey, pm).subscribe(banks -> {
